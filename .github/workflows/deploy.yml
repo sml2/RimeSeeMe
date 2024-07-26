@@ -12,10 +12,5 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.client_payload.branch }}
-
       - name: Run some script
         run: echo "Trigger by another repo"
