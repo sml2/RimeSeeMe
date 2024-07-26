@@ -1,6 +1,10 @@
 name: deploy
 
 on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
   repository_dispatch:
     type: [repository_dispatch_event]
 jobs:
