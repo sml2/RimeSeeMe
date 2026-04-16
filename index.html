@@ -21,28 +21,59 @@
 </head>
 
 <body>
-    <h1><span>RIME</span><ruby>西<rt>See</rt></ruby><ruby>米<rt>Me</rt></ruby></h1>
-    <table>
+    <!-- 第一行：标题 + 横向预览 -->
+    <table id="header_table">
         <tr>
-            <td id="effect">
-                <div id="box">
-                    <div id="select">
-                        <span id="text">小狼毫</span>
-                        <span id="hilited">pei se</span> <span id="cursor">‸</span>
-                        <span id="prevpage"><</span>&nbsp
-                        <span id="nextpage">></span>
+            <td id="title_cell">
+                <h1><span>RIME</span><ruby>西<rt>See</rt></ruby><ruby>米<rt>Me</rt></ruby></h1>
+            </td>
+            <td id="effect_horizontal">
+                <div id="box_horizontal">
+                    <div id="select_horizontal">
+                        <span id="text_horizontal">小狼毫</span>
+                        <span id="hilited_horizontal">pei se</span> <span id="cursor_horizontal">‸</span>
+                        <span id="prevpage_horizontal"><</span>&nbsp
+                        <span id="nextpage_horizontal">></span>
                     </div>
-                    <div id="display">
-                        <div class="_hilited_candidate_back" id="n1"><span id="_hilited_mark">|</span><span class='label' id="label1">1.</span><span class='word' id="word1">配色</span><span class='code' id="code1">(pei se)</span></div>
-                        <div class="_candidate_back" id="n2"> <span class='_hilited_marks'>|</span> <span class="_label" id="label2">2.</span><span class="word" id="word2">陪</span><span class='code' id="code2">(pei)</span></div>
-                        <div class="_candidate_back" id="n3"> <span class='_hilited_marks'>|</span> <span class="_label" id="label3">3.</span><span class="word" id="word3">配</span><span class='code' id="code3">(pei)</span></div>
-                        <div class="_candidate_back" id="n4"> <span class='_hilited_marks'>|</span> <span class="_label" id="label4">4.</span><span class="word" id="word4">賠</span><span class='code' id="code4">(pei)</span></div>
-                        <div class="_candidate_back" id="n5"> <span class='_hilited_marks'>|</span> <span class="_label" id="label5">5.</span><span class="word" id="word5">培</span><span class='code' id="code5">(pei)</span></div>
-                        <div class="_candidate_back" id="n6"> <span class='_hilited_marks'>|</span> <span class="_label" id="label6">6.</span><span class="word" id="word6">佩</span><span class='code' id="code6">(pei)</span></div>
-                        <div class="_candidate_back" id="n7"> <span class='_hilited_marks'>|</span> <span class="_label" id="label7">7.</span><span class="word" id="word7">裴</span><span class='code' id="code7">(pei)</span></div>
-                        <div class="_candidate_back" id="n8"> <span class='_hilited_marks'>|</span> <span class="_label" id="label8">8.</span><span class="word" id="word8">斐</span><span class='code' id="code8">(pei)</span></div>
-                        <div class="_candidate_back" id="n9"> <span class='_hilited_marks'>|</span> <span class="_label" id="label9">9.</span><span class="word" id="word9">呸</span><span class='code' id="code9">(pei)</span></div>
-                        <div class="_candidate_back" id="n10"><span class='_hilited_marks'>|</span> <span class="_label" id="label10">0.</span><span class="word" id="word10">胚</span><span class='code' id="code10">(pei)</span></div>
+                    <div id="display_horizontal">
+                        <div class="_hilited_candidate_back" id="nh1"><span id="_hilited_mark_h">|</span><span class='label' id="label_h1">1.</span><span class='word' id="word_h1">配色</span><span class='code' id="code_h1">(pei se)</span></div>
+                        <div class="_candidate_back" id="nh2"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_h2">2.</span><span class="word" id="word_h2">陪</span><span class='code' id="code_h2">(pei)</span></div>
+                        <div class="_candidate_back" id="nh3"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_h3">3.</span><span class="word" id="word_h3">配</span><span class='code' id="code_h3">(pei)</span></div>
+                        <div class="_candidate_back" id="nh4"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_h4">4.</span><span class="word" id="word_h4">賠</span><span class='code' id="code_h4">(pei)</span></div>
+                        <div class="_candidate_back" id="nh5"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_h5">5.</span><span class="word" id="word_h5">培</span><span class='code' id="code_h5">(pei)</span></div>
+                        <div class="_candidate_back" id="nh6"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_h6">6.</span><span class="word" id="word_h6">佩</span><span class='code' id="code_h6">(pei)</span></div>
+                        <div class="_candidate_back" id="nh7"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_h7">7.</span><span class="word" id="word_h7">裴</span><span class='code' id="code_h7">(pei)</span></div>
+                        <div class="_candidate_back" id="nh8"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_h8">8.</span><span class="word" id="word_h8">斐</span><span class='code' id="code_h8">(pei)</span></div>
+                        <div class="_candidate_back" id="nh9"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_h9">9.</span><span class="word" id="word_h9">呸</span><span class='code' id="code_h9">(pei)</span></div>
+                        <div class="_candidate_back" id="nh10"><span class='_hilited_marks'>|</span> <span class="_label" id="label_h10">0.</span><span class="word" id="word_h10">胚</span><span class='code' id="code_h10">(pei)</span></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- 第二行：纵向预览 + 配置项 + 生成代码 -->
+    <table id="main_table">
+        <tr>
+            <td id="effect_vertical">
+                <div id="box_vertical">
+                    <div id="select_vertical">
+                        <span id="text_vertical">小狼毫</span>
+                        <span id="hilited_vertical">pei se</span> <span id="cursor_vertical">‸</span>
+                        <span id="prevpage_vertical"><</span>&nbsp
+                        <span id="nextpage_vertical">></span>
+                    </div>
+                    <div id="display_vertical">
+                        <div class="_hilited_candidate_back" id="nv1"><span id="_hilited_mark_v">|</span><span class='label' id="label_v1">1.</span><span class='word' id="word_v1">配色</span><span class='code' id="code_v1">(pei se)</span></div>
+                        <div class="_candidate_back" id="nv2"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_v2">2.</span><span class="word" id="word_v2">陪</span><span class='code' id="code_v2">(pei)</span></div>
+                        <div class="_candidate_back" id="nv3"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_v3">3.</span><span class="word" id="word_v3">配</span><span class='code' id="code_v3">(pei)</span></div>
+                        <div class="_candidate_back" id="nv4"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_v4">4.</span><span class="word" id="word_v4">賠</span><span class='code' id="code_v4">(pei)</span></div>
+                        <div class="_candidate_back" id="nv5"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_v5">5.</span><span class="word" id="word_v5">培</span><span class='code' id="code_v5">(pei)</span></div>
+                        <div class="_candidate_back" id="nv6"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_v6">6.</span><span class="word" id="word_v6">佩</span><span class='code' id="code_v6">(pei)</span></div>
+                        <div class="_candidate_back" id="nv7"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_v7">7.</span><span class="word" id="word_v7">裴</span><span class='code' id="code_v7">(pei)</span></div>
+                        <div class="_candidate_back" id="nv8"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_v8">8.</span><span class="word" id="word_v8">斐</span><span class='code' id="code_v8">(pei)</span></div>
+                        <div class="_candidate_back" id="nv9"> <span class='_hilited_marks'>|</span> <span class="_label" id="label_v9">9.</span><span class="word" id="word_v9">呸</span><span class='code' id="code_v9">(pei)</span></div>
+                        <div class="_candidate_back" id="nv10"><span class='_hilited_marks'>|</span> <span class="_label" id="label_v10">0.</span><span class="word" id="word_v10">胚</span><span class='code' id="code_v10">(pei)</span></div>
                     </div>
                 </div>
             </td>
@@ -218,6 +249,25 @@
         //window.onload = function() { drawConfigs(); }
         window.onload = function() {
             changeNumber(document.getElementById('_page_size').value);
+
+            // 初始化 BGR/RGB 的背景颜色
+            var bgrInput = document.getElementById('bgr');
+            var rgbInput = document.getElementById('rgb');
+            if (bgrInput && bgrInput.value) {
+                exMode('bgr', 'rgb', bgrInput.value);
+            }
+
+            // 延迟初始化，确保 jscolor 已经加载完成
+            setTimeout(function() {
+                // 手动触发所有颜色输入框的 onchange 事件来应用默认颜色
+                var colorInputs = document.querySelectorAll('input[data-jscolor]');
+                colorInputs.forEach(function(input) {
+                    if (input.onchange) {
+                        // 模拟 jscolor 触发的 onchange，使用 input 自身作为 this
+                        input.onchange.call(input);
+                    }
+                });
+            }, 500);
         }
         jscolor.presets.default = {
             palette: [

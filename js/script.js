@@ -68,33 +68,39 @@ function UpdateCornerRadius() {
 function UpdateRoundCorner() {
     var round_corner = document.getElementById('round_corner').value;
     for (var i = 1; i <= 10; i++) {
-        var elm = document.getElementById('n' + i);
-        elm.style.borderRadius = round_corner + 'px';
+        document.getElementById('nh' + i).style.borderRadius = round_corner + 'px';
+        document.getElementById('nv' + i).style.borderRadius = round_corner + 'px';
     }
 }
 
 function UpdateShadowView() {
-    var box = document.getElementById('box');
-    var n1 = document.getElementById('n1');
-    var hilited = document.getElementById('hilited');
+    var box_h = document.getElementById('box_horizontal');
+    var box_v = document.getElementById('box_vertical');
+    var nh1 = document.getElementById('nh1');
+    var nv1 = document.getElementById('nv1');
+    var hilited_h = document.getElementById('hilited_horizontal');
+    var hilited_v = document.getElementById('hilited_vertical');
     var shadow_offset_x = document.getElementById('shadow_offset_x').value;
     var shadow_offset_y = document.getElementById('shadow_offset_y').value;
     var shadow_radius = document.getElementById('shadow_radius').value;
 
     var prefix = shadow_offset_x.toString() + 'px ' + shadow_offset_y.toString() + 'px ' + shadow_radius.toString() + 'px #';
     var setting = prefix + convertABGR2RGBA(document.getElementsByName('shadow_color')[0].value);
-    box.style.boxShadow = setting;
+    box_h.style.boxShadow = setting;
+    box_v.style.boxShadow = setting;
 
     setting = prefix + convertABGR2RGBA(document.getElementsByName('hilited_shadow_color')[0].value);
-    hilited.style.boxShadow = setting;
+    hilited_h.style.boxShadow = setting;
+    hilited_v.style.boxShadow = setting;
 
     setting = prefix + convertABGR2RGBA(document.getElementsByName('hilited_candidate_shadow_color')[0].value);
-    n1.style.boxShadow = setting;
+    nh1.style.boxShadow = setting;
+    nv1.style.boxShadow = setting;
 
     setting = prefix + convertABGR2RGBA(document.getElementsByName('candidate_shadow_color')[0].value);
     for (var i = 2; i <= 10; i++) {
-        var elm = document.getElementById('n' + i);
-        elm.style.boxShadow = setting;
+        document.getElementById('nh' + i).style.boxShadow = setting;
+        document.getElementById('nv' + i).style.boxShadow = setting;
     }
 }
 
@@ -105,9 +111,15 @@ function writeIn(name, value) {
 function changeNumber(value) {
     var a = parseInt(value);
     b = a + 1;
-    for (var i = a; i >= 1; i--)
-        document.getElementById('n' + i).style.display = 'inherit';
-    for (var j = b; j <= 10; j++) document.getElementById('n' + j).style.display = 'none';
+    // 同时更新横向和纵向预览的显示数量
+    for (var i = a; i >= 1; i--) {
+        document.getElementById('nh' + i).style.display = 'inherit';
+        document.getElementById('nv' + i).style.display = 'inherit';
+    }
+    for (var j = b; j <= 10; j++) {
+        document.getElementById('nh' + j).style.display = 'none';
+        document.getElementById('nv' + j).style.display = 'none';
+    }
     document.getElementById('page_size_value').innerHTML = value.toString();
     //drawConfigs();
 }
@@ -115,19 +127,64 @@ function changeNumber(value) {
 function changeColor(element, mode, name, color, node) {
     var tmp = color;
     color = convertABGR2RGBA(color);
+
+    // 映射旧的单一 ID 到新的横向和纵向 ID
+    var elements = [];
+    if (element === 'box') {
+        elements = ['box_horizontal', 'box_vertical'];
+    } else if (element === 'text') {
+        elements = ['text_horizontal', 'text_vertical'];
+    } else if (element === 'hilited') {
+        elements = ['hilited_horizontal', 'hilited_vertical'];
+    } else if (element === 'prevpage') {
+        elements = ['prevpage_horizontal', 'prevpage_vertical'];
+    } else if (element === 'nextpage') {
+        elements = ['nextpage_horizontal', 'nextpage_vertical'];
+    } else if (element === 'n1') {
+        elements = ['nh1', 'nv1'];
+    } else {
+        elements = [element];
+    }
+
     switch (mode) {
         case 'bg':
-            document.getElementById(element).style.backgroundColor = '#' + color;
+            for (var i = 0; i < elements.length; i++) {
+                document.getElementById(elements[i]).style.backgroundColor = '#' + color;
+            }
             break;
         case 'bd':
-            document.getElementById(element).style.borderColor = '#' + color;
+            for (var i = 0; i < elements.length; i++) {
+                document.getElementById(elements[i]).style.borderColor = '#' + color;
+            }
+            break;
+        case 'c':
+            for (var i = 0; i < elements.length; i++) {
+                document.getElementById(elements[i]).style.color = '#' + color;
+            }
             break;
         case 'name':
-            document.getElementById(name).style.color = '#' + color;
+            // 处理第一个候选项的特殊ID格式
+            if (name === '_hilited_mark') {
+                document.getElementById('_hilited_mark_h').style.color = '#' + color;
+                document.getElementById('_hilited_mark_v').style.color = '#' + color;
+            } else if (name === 'label1') {
+                document.getElementById('label_h1').style.color = '#' + color;
+                document.getElementById('label_v1').style.color = '#' + color;
+            } else if (name === 'word1') {
+                document.getElementById('word_h1').style.color = '#' + color;
+                document.getElementById('word_v1').style.color = '#' + color;
+            } else if (name === 'code1') {
+                document.getElementById('code_h1').style.color = '#' + color;
+                document.getElementById('code_v1').style.color = '#' + color;
+            } else {
+                document.getElementById(name).style.color = '#' + color;
+            }
             break;
         case 'n':
-            for (i = 2; i <= 10; i++)
-                document.getElementById(name + i).style.color = '#' + color;
+            for (i = 2; i <= 10; i++) {
+                document.getElementById(name + '_h' + i).style.color = '#' + color;
+                document.getElementById(name + '_v' + i).style.color = '#' + color;
+            }
             break;
         case 'nd':
             var _cbs = document.getElementsByClassName('_candidate_back');
@@ -135,11 +192,15 @@ function changeColor(element, mode, name, color, node) {
                 _cbs[i].style.borderColor = '#' + color;
             break;
         case 'nb':
-            for (i = 2; i <= 10; i++)
-                document.getElementById(name + i).style.backgroundColor = '#' + color;
+            for (i = 2; i <= 10; i++) {
+                document.getElementById('nh' + i).style.backgroundColor = '#' + color;
+                document.getElementById('nv' + i).style.backgroundColor = '#' + color;
+            }
             break;
         default:
-            document.getElementById(element).style.color = '#' + color;
+            for (var i = 0; i < elements.length; i++) {
+                document.getElementById(elements[i]).style.color = '#' + color;
+            }
     }
     if (node != undefined)
         exConvert(node, tmp, color);
